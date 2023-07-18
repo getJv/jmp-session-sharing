@@ -1,0 +1,50 @@
+parameters:
+  token_sync_secret: '%env(resolve:JPM_TOKEN_SYNC_SECRET)%'
+
+  default_app_url: '/'
+  app_url: '%env(default:default_app_url:resolve:JPM_APP_URL)%'
+
+  default_known_remote_hosts: ''
+  known_remote_hosts: '%env(default:default_known_remote_hosts:resolve:JPM_KNOWN_REMOTE_HOSTS)%'
+
+  default_host_separator: ','
+  host_separator: '%env(default:default_host_separator:resolve:JPM_HOST_SEPARATOR)%'
+
+  default_idp_url: ''
+  idp_url: '%env(default:default_idp_url:resolve:JPM_IDP_URL)%'
+
+  default_host_regex_finder: '^(http:\/\/|https:\/\/)(www\.)?'
+  host_regex_finder: '%env(default:default_host_regex_finder:resolve:JPM_HOST_REGEX_FINDER)%'
+
+  default_attr_name_url_callback: 'callback'
+  attr_name_url_callback: '%env(default:default_attr_name_url_callback:resolve:JPM_ATTR_NAME_URL_CALLBACK)%'
+
+  default_attr_name_url_token: 'token'
+  attr_name_url_token: '%env(default:default_attr_name_url_token:resolve:JPM_ATTR_NAME_URL_TOKEN)%'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $tokenSyncSecret: '%token_sync_secret%'
+      $attrNameUrlCallback: '%attr_name_url_callback%'
+      $attrNameUrlToken: '%attr_name_url_token%'
+      $appUrl: '%app_url%'
+      $idpUrl: '%idp_url%'
+
+  JPM\SessionSharingBundle\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+
+  JPM\SessionSharingBundle\Service\HostService:
+    public: true
+    arguments:
+      $knownRemoteHosts: '%known_remote_hosts%'
+      $hostSeparator: '%host_separator%'
+      $hostRegexFinder: '%host_regex_finder%'
+
+
