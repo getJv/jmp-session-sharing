@@ -1,6 +1,6 @@
 {
   "name": "jpm/session-sharing-bundle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "symfony-bundle",
   "description": "Allow session sharing among known servers using sync cryptography",
   "license": "MIT",
