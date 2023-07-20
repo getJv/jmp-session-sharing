@@ -25,7 +25,7 @@ In the next section you will find the step-by-step of how to install and use, bu
    - `JPM_APP_URL` with your own address
    - JPM_KNOWN_REMOTE_HOSTS` known host domains with a comma between each entry.
      Here is an example:
-     ``bash
+     ```bash
      ###> jpm/session-sharing keys ###
      JPM_TOKEN_SYNC_SECRET=def0000031429fb75a...69057f875ff4c6118cb8c1
      JPM_APP_URL=http://host-idp.test
