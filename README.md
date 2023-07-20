@@ -18,11 +18,15 @@ composer require jpm/session-sharing-bundle
    - The output key usually start with: `def...`
 3. In your `.env` file add the following keys:
    - `JPM_TOKEN_SYNC_SECRET` with your generated key
-   - `JPM_KNOWN_REMOTE_HOSTS` know hosts domains using a comma between each entry
+   - `JPM_APP_URL` with your own address
+   - `JPM_KNOWN_REMOTE_HOSTS` known hosts domains using a comma between each entry
    Here is an example: 
       ```bash
-      JPM_TOKEN_SYNC_SECRET="def00..."
-      JPM_KNOWN_REMOTE_HOSTS="remote-app.com,other-remote.test"
+      ###> jpm/session-sharing keys ###
+      JPM_TOKEN_SYNC_SECRET=def0000031429fb75a...69057f875ff4c6118cb8c1
+      JPM_APP_URL=http://host-idp.test
+      JPM_KNOWN_REMOTE_HOSTS=remote.test
+      ###< jpm/session-sharing keys ###
       ```
 4. Now is needed to create a Subscriber, use the command: `php bin/console make:subscriber RemoteAuth` or just create a class manually in `./src/EventSubscriber/RemoteAuthSubscriber.php`
    ```php
@@ -62,9 +66,11 @@ composer require jpm/session-sharing-bundle
    - `JPM_IDP_URL` with the host route which do login action
      Here is an example:
       ```bash
-      JPM_TOKEN_SYNC_SECRET="def00..."
+      ###> jpm/session-sharing keys ###
+      JPM_TOKEN_SYNC_SECRET=def0000031429fb75a...69057f875ff4c6118cb8c1
       JPM_APP_URL=http://remote.test
       JPM_IDP_URL=http://host-idp.test/login
+      ###< jpm/session-sharing keys ###
       ```
 4. Now is needed to create a Subscriber, use the command: `php bin/console make:subscriber SessionManager` or just create a class manually in `./src/EventSubscriber/SessionManagerSubscriber.php`
    ```php
